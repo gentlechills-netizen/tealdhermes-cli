@@ -1,0 +1,121 @@
+# examples.yaml — Exemples manuels (format OG tldr)
+# Chaque commande : liste de {desc, cmd} paires
+# Max 5 exemples par commande
+
+setup:
+  - desc: "Launch the first-time wizard:"
+    cmd: "hermes setup --portal"
+  - desc: "Set up the provider and model:"
+    cmd: "hermes setup model"
+  - desc: "Set up messaging platforms:"
+    cmd: "hermes setup gateway"
+  - desc: "Set up agent behavior:"
+    cmd: "hermes setup agent"
+  - desc: "Quick setup — only prompt for missing or unset items:"
+    cmd: "hermes setup --quick"
+
+auth:
+  - desc: "Launch the interactive management wizard:"
+    cmd: "hermes auth"
+  - desc: "List all credential pools:"
+    cmd: "hermes auth list"
+  - desc: "Show credentials for a specific provider:"
+    cmd: "hermes auth list {{openrouter}}"
+  - desc: "Remove a credential by provider:"
+    cmd: "hermes auth remove {{openrouter}}"
+  - desc: "Show auth status for a provider:"
+    cmd: "hermes auth status {{anthropic}}"
+
+secrets:
+  - desc: "Run the Bitwarden setup wizard:"
+    cmd: "hermes secrets bitwarden setup"
+  - desc: "Show 1Password secrets status:"
+    cmd: "hermes secrets 1password status"
+  - desc: "Sync and apply secrets:"
+    cmd: "hermes secrets bitwarden sync --apply"
+
+status:
+  - desc: "Show quick status:"
+    cmd: "hermes status"
+  - desc: "Show all details in shareable format:"
+    cmd: "hermes status --all"
+  - desc: "Run deeper diagnostic checks:"
+    cmd: "hermes status --deep"
+
+doctor:
+  - desc: "Run diagnostics and show issues:"
+    cmd: "hermes doctor"
+  - desc: "Diagnose and attempt automatic fixes:"
+    cmd: "hermes doctor --fix"
+
+security:
+  - desc: "Run supply-chain audit:"
+    cmd: "hermes security audit"
+  - desc: "Emit machine-readable JSON output:"
+    cmd: "hermes security audit --json"
+  - desc: "Fail on high-severity findings or above:"
+    cmd: "hermes security audit --fail-on {{high}}"
+
+backup:
+  - desc: "Full backup to ~/hermes-backup-*.zip:"
+    cmd: "hermes backup"
+  - desc: "Full backup to specific path:"
+    cmd: "hermes backup -o /tmp/hermes.zip"
+  - desc: "Quick state-only snapshot:"
+    cmd: "hermes backup --quick"
+  - desc: "Quick snapshot with label:"
+    cmd: "hermes backup --quick --label \"pre-upgrade\""
+
+checkpoints:
+  - desc: "Show status overview:"
+    cmd: "hermes checkpoints"
+  - desc: "Aggressive cleanup of old checkpoints:"
+    cmd: "hermes checkpoints prune --retention-days 3"
+  - desc: "Tighten size cap for the store:"
+    cmd: "hermes checkpoints prune --max-size-mb 200"
+
+import:
+  - desc: "Restore a backup:"
+    cmd: "hermes import ~/hermes-backup-20260423.zip"
+  - desc: "Restore without confirmation prompt:"
+    cmd: "hermes import ~/hermes-backup-20260423.zip --force"
+
+portal:
+  - desc: "Show Portal auth and tool gateway status:"
+    cmd: "hermes portal"
+  - desc: "Open subscription page in browser:"
+    cmd: "hermes portal open"
+  - desc: "List Tool Gateway partners and routing:"
+    cmd: "hermes portal tools"
+
+sessions:
+  - desc: "Browse sessions interactively:"
+    cmd: "hermes sessions browse"
+  - desc: "Prune sessions older than 90 days (default):"
+    cmd: "hermes sessions prune"
+  - desc: "Prune sessions older than 30 days:"
+    cmd: "hermes sessions prune --older-than {{30d}}"
+  - desc: "Prune sessions newer than 8 hours:"
+    cmd: "hermes sessions prune --newer-than {{8h}}"
+  - desc: "List recent sessions:"
+    cmd: "hermes sessions list"
+
+dashboard:
+  - desc: "Launch the web dashboard:"
+    cmd: "hermes dashboard"
+  - desc: "Stop the running dashboard:"
+    cmd: "hermes dashboard --stop"
+  - desc: "Show running dashboard processes:"
+    cmd: "hermes dashboard --status"
+
+version:
+  - desc: "Show version:"
+    cmd: "hermes version"
+
+update:
+  - desc: "Check for available update:"
+    cmd: "hermes update --check"
+  - desc: "Pull latest changes and reinstall:"
+    cmd: "hermes update"
+  - desc: "Update with pre-update backup:"
+    cmd: "hermes update --backup"

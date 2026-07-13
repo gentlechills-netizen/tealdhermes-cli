@@ -1,0 +1,9 @@
+[directories]
+custom_pages_dir = "${HOME}/.local/share/tldrhc/pages"
+
+[updates]
+auto_update = false
+
+[display]
+compact = false
+use_pager = false

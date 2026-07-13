@@ -1,0 +1,72 @@
+# descriptions.yaml — Descriptions des commandes Hermes CLI
+# Sources : hermes <cmd> --help (priorité) ou cache docs officiel (colonne Purpose)
+# Validées par Patrick — le texte approuvé fait autorité
+
+setup:
+  short: "Configure Hermes Agent with an interactive wizard"
+  long: "Run the interactive setup wizard to configure Hermes Agent"
+  syntax: "hermes setup [section] [options]"
+
+auth:
+  short: "Manage OAuth credentials for Codex/Nous/Anthropic"
+  long: "Manage credential pools (API key and OAuth) for same-provider key rotation"
+  syntax: "hermes auth <subcommand> [options]"
+
+secrets:
+  short: "Pull API keys from an external secret manager instead of storing them in ~/.hermes/.env"
+  long: "Pull API keys from an external secret manager at process startup instead of storing them in ~/.hermes/.env. Supports Bitwarden Secrets Manager and 1Password."
+  syntax: "hermes secrets <subcommand> [options]"
+
+status:
+  short: "Display status of Hermes Agent components: agent, auth, platform, etc"
+  long: "Display status of Hermes Agent components: agent, auth, platform, etc"
+  syntax: "hermes status [options]"
+
+doctor:
+  short: "Diagnose issues with Hermes Agent setup"
+  long: "Diagnose issues with Hermes Agent setup"
+  syntax: "hermes doctor [options]"
+
+security:
+  short: "On-demand vulnerability scan against OSV.dev"
+  long: "On-demand vulnerability scan against OSV.dev. Covers the Hermes venv, Python dependencies in ~/.hermes/plugins/, and pinned npx/uvx MCP servers in config.yaml. Does NOT scan globally-installed packages or editor/browser extensions."
+  syntax: "hermes security <subcommand> [options]"
+
+backup:
+  short: "Create a zip archive of your entire Hermes configuration, skills, sessions, and data"
+  long: "Create a zip archive of your entire Hermes configuration, skills, sessions, and data (excludes the hermes-agent codebase)"
+  syntax: "hermes backup [options]"
+
+checkpoints:
+  short: "Manage the filesystem checkpoint store"
+  long: "Inspect and manage the checkpoints from ~/.hermes/checkpoints/ used for the /rollback command. Safe to run any time; does not require the agent to be running."
+  syntax: "hermes checkpoints COMMAND [options]"
+
+import:
+  short: "Extract a previously created Hermes backup into your Hermes home directory"
+  long: "Restore a previously created Hermes backup into your Hermes home directory, restoring configuration, skills, sessions, and data"
+  syntax: "hermes import [options] <zipfile>"
+
+portal:
+  short: "Nous Portal status, subscription link, and Tool Gateway routing"
+  long: "Nous Portal and Tool Gateway status"
+  syntax: "hermes portal [subcommand] [options]"
+
+sessions:
+  short: "Browse and manage sessions: export, prune, rename, delete, etc"
+  long: "View and manage the session store: list, browse, export, delete, prune, archive, optimize, repair, stats, rename"
+  syntax: "hermes sessions <subcommand> [options]"
+
+dashboard:
+  short: "Launch the Hermes Agent web dashboard for managing config, API keys, and sessions"
+  long: "Launch the incredibly useful Hermes Agent web dashboard for managing most critical aspects of Hermes Agent. USE IT!"
+  syntax: "hermes dashboard [options]"
+
+version:
+  short: "Show Hermes-Agent version information"
+  syntax: "hermes version"
+
+update:
+  short: "Pull the latest code changes and reinstall dependencies"
+  long: "Pulls the latest hermes-agent code and reinstalls dependencies in the managed venv, then re-runs post-install hooks (MCP servers, skills sync, completion install). Safe to run on a live install. Use --check to preview without installing."
+  syntax: "hermes update [options]"

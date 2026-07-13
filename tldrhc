@@ -1,0 +1,50 @@
+#!/bin/bash
+#
+# tldrhc — tldr for Hermes CLI commands
+# Displays help pages for Hermes CLI commands using tealdeer.
+#
+# Usage:
+#   tldrhc            List available Hermes CLI commands
+#   tldrhc backup     Help page for hermes backup command
+#   tldrhc --help     This help
+
+TLDRHC_DIR="${TLDRHC_DIR:-$HOME/.local/share/tldrhc}"
+CONFIG_DIR="$HOME/.config/tldrhc"
+LISTING="$HOME/.hermes/tldr-hermes-cli/pages/_listing.md"
+
+show_usage() {
+    sed -n '/^# Usage:/,/^$/{s/^# //p}' "$0"
+}
+
+show_listing() {
+    if [ -f "$LISTING" ]; then
+        cat "$LISTING"
+        echo
+    else
+        echo "No listing found. Run generate_listing.py first"
+        echo "or configure TLDRHC_DIR."
+        exit 1
+    fi
+}
+
+# --- Main ---
+
+case "${1:-}" in
+    --help|-h)
+        show_usage
+        exit 0
+        ;;
+    "")
+        show_listing
+        exit 0
+        ;;
+    *)
+        TEALDEER_CONFIG_DIR="$CONFIG_DIR" tldr "hc-$1" 2>/dev/null
+        if [ $? -ne 0 ]; then
+            echo "Unknown command: $1"
+            echo "Run 'tldrhc' with no arguments to list available commands."
+            exit 1
+        fi
+        exit 0
+        ;;
+esac

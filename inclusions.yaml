@@ -1,0 +1,18 @@
+# inclusions.yaml — Commandes retenues pour tldrhc
+# 14 commandes Hermes CLI documentées
+# Ajouter une entrée avec true pour inclure une commande
+
+setup: true
+auth: true
+secrets: true
+status: true
+doctor: true
+security: true
+backup: true
+checkpoints: true
+import: true
+portal: true
+sessions: true
+dashboard: true
+version: true
+update: true
