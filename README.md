@@ -34,7 +34,7 @@ $ tldrhc backup
 ## Installation
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/gentlechills-netizen/tealdhermes/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/gentlechills-netizen/tealdhermes-cli/main/install.sh | bash
 ```
 
 This installs the wrapper to `~/.local/bin/tldrhc`, pages to `~/.local/share/tldrhc/pages/`, and config to `~/.config/tldrhc/config.toml`.

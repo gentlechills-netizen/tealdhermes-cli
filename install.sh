@@ -21,7 +21,7 @@ if [ -f "$SCRIPT_DIR/tldrhc" ]; then
     cp "$SCRIPT_DIR/tldrhc" "$TLDRHC_BIN"
 else
     echo "⚠ tldrhc script not found. Downloading from GitHub..."
-    curl -sSL -o "$TLDRHC_BIN" "https://raw.githubusercontent.com/gentlechills-netizen/tealdhermes/main/tldrhc"
+    curl -sSL -o "$TLDRHC_BIN" "https://raw.githubusercontent.com/gentlechills-netizen/tealdhermes-cli/main/tldrhc"
 fi
 chmod +x "$TLDRHC_BIN"
 
