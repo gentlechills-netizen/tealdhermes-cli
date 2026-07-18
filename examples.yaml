@@ -4,15 +4,13 @@
 
 setup:
   - desc: "Launch the first-time wizard:"
-    cmd: "hermes setup --portal"
-  - desc: "Set up the provider and model:"
-    cmd: "hermes setup model"
-  - desc: "Set up messaging platforms:"
-    cmd: "hermes setup gateway"
-  - desc: "Set up agent behavior:"
-    cmd: "hermes setup agent"
+    cmd: "hermes setup"
   - desc: "Quick setup — only prompt for missing or unset items:"
     cmd: "hermes setup --quick"
+  - desc: "Configure provider and model for the active profile:"
+    cmd: "hermes setup model"
+  - desc: "Configure agent behavior for the active profile:"
+    cmd: "hermes setup agent"
 
 auth:
   - desc: "Launch the interactive management wizard:"
@@ -20,11 +18,11 @@ auth:
   - desc: "List all credential pools:"
     cmd: "hermes auth list"
   - desc: "Show credentials for a specific provider:"
-    cmd: "hermes auth list {{openrouter}}"
-  - desc: "Remove a credential by provider:"
-    cmd: "hermes auth remove {{openrouter}}"
+    cmd: "hermes auth list {{provider}}"
+  - desc: "Remove a credential by provider and index:"
+    cmd: "hermes auth remove {{provider}} {{2}}"
   - desc: "Show auth status for a provider:"
-    cmd: "hermes auth status {{anthropic}}"
+    cmd: "hermes auth status {{provider}}"
 
 secrets:
   - desc: "Run the Bitwarden setup wizard:"
@@ -71,7 +69,7 @@ checkpoints:
     cmd: "hermes checkpoints"
   - desc: "Aggressive cleanup of old checkpoints:"
     cmd: "hermes checkpoints prune --retention-days 3"
-  - desc: "Tighten size cap for the store:"
+  - desc: "Drop oldest commits until store size ≤ 200 MB:"
     cmd: "hermes checkpoints prune --max-size-mb 200"
 
 import:
@@ -119,3 +117,81 @@ update:
     cmd: "hermes update"
   - desc: "Update with pre-update backup:"
     cmd: "hermes update --backup"
+
+chat:
+  - desc: "One-shot, non-interactive prompt:"
+    cmd: "hermes chat -q \"{{prompt}}\""
+  - desc: "Override the model for the duration of this session:"
+    cmd: "hermes chat -m {{model}}"
+  - desc: "Force a provider for the duration of this session:"
+    cmd: "hermes chat --provider {{provider}}"
+
+config:
+  - desc: "Show current config values:"
+    cmd: "hermes config show"
+  - desc: "Print the .env file path:"
+    cmd: "hermes config env-path"
+  - desc: "Check for missing or stale config:"
+    cmd: "hermes config check"
+
+curator:
+  - desc: "Show curator status and skill stats:"
+    cmd: "hermes curator status"
+  - desc: "Take a manual snapshot of skills:"
+    cmd: "hermes curator backup"
+  - desc: "Trigger a review (add --dry-run for preview):"
+    cmd: "hermes curator run"
+  - desc: "Pin or unpin a skill:"
+    cmd: "hermes curator pin/unpin {{skill}}"
+  - desc: "List or restore archived skills:"
+    cmd: "hermes curator list-archived/restore {{skill}}"
+
+gateway:
+  - desc: "Show service status:"
+    cmd: "hermes gateway status"
+  - desc: "List all profiles and gateway status:"
+    cmd: "hermes gateway list"
+  - desc: "Run the gateway in the foreground:"
+    cmd: "hermes gateway run"
+  - desc: "Start, stop, or restart the service (--all for every profile):"
+    cmd: "hermes gateway start/stop/restart"
+
+insights:
+  - desc: "Analyze the last 30 days (default):"
+    cmd: "hermes insights"
+  - desc: "Analyze the last 7 days:"
+    cmd: "hermes insights --days 7"
+  - desc: "Filter by messaging source (e.g. cli or telegram):"
+    cmd: "hermes insights --source {{source}}"
+
+plugins:
+  - desc: "List installed plugins with status:"
+    cmd: "hermes plugins list"
+
+send:
+  - desc: "List configured targets:"
+    cmd: "hermes send --list"
+  - desc: "Send a message to a target:"
+    cmd: "hermes send --to {{target}} \"{{message}}\""
+  - desc: "Send a file:"
+    cmd: "hermes send --to {{target}} --file {{path}}"
+
+memory:
+  - desc: "Show current memory provider config:"
+    cmd: "hermes memory status"
+  - desc: "Interactive provider selection and configuration:"
+    cmd: "hermes memory setup"
+
+moa:
+  - desc: "List configured MoA presets:"
+    cmd: "hermes moa list"
+
+model:
+  - desc: "Interactive provider and model selector:"
+    cmd: "hermes model"
+  - desc: "Switch to a pre-configured model (permanent):"
+    cmd: "hermes model zai:glm-5"
+
+profile:
+  - desc: "List all profiles:"
+    cmd: "hermes profile list"

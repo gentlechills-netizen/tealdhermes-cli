@@ -1,5 +1,5 @@
 # inclusions.yaml — Commandes retenues pour tldrhc
-# 14 commandes Hermes CLI documentées
+# 25 commandes Hermes CLI documentées
 # Ajouter une entrée avec true pour inclure une commande
 
 setup: true
@@ -16,3 +16,14 @@ sessions: true
 dashboard: true
 version: true
 update: true
+chat: true
+config: true
+curator: true
+gateway: true
+insights: true
+plugins: true
+send: true
+memory: true
+moa: true
+model: true
+profile: true

@@ -70,3 +70,58 @@ update:
   short: "Pull the latest code changes and reinstall dependencies"
   long: "Pulls the latest hermes-agent code and reinstalls dependencies in the managed venv, then re-runs post-install hooks (MCP servers, skills sync, completion install). Safe to run on a live install. Use --check to preview without installing."
   syntax: "hermes update [options]"
+
+chat:
+  short: "Interactive or one-shot chat with the agent"
+  long: "Interactive or one-shot chat with the agent. Supports model override, provider selection, and session resume."
+  syntax: "hermes chat [options]"
+
+config:
+  short: "Manage Hermes configuration"
+  long: "Show, edit, and validate Hermes Agent configuration values stored in config.yaml."
+  syntax: "hermes config <subcommand>"
+
+curator:
+  short: "Review, prune, and archive agent-created skills"
+  long: "Auxiliary-model background task that periodically reviews agent-created skills, prunes stale ones, consolidates overlaps, and archives obsolete skills. Bundled and hub-installed skills are never touched."
+  syntax: "hermes curator <subcommand>"
+
+gateway:
+  short: "Run or manage the messaging gateway service"
+  long: "Run or manage the messaging gateway service (systemd/launchd background service or foreground process)."
+  syntax: "hermes gateway <subcommand> [options]"
+
+insights:
+  short: "Analyze session usage and activity"
+  long: "Analyze session usage and activity across messaging platforms over a configurable time window."
+  syntax: "hermes insights [options]"
+
+plugins:
+  short: "Unified plugin management"
+  long: "Unified plugin management — general plugins, memory providers, and context engines in one place."
+  syntax: "hermes plugins [subcommand]"
+
+send:
+  short: "Send a one-shot message to a configured messaging platform"
+  long: "Send a one-shot message to a configured messaging platform without spinning up an agent or gateway loop."
+  syntax: "hermes send --to <target> [message]"
+
+memory:
+  short: "Set up and manage external memory provider plugins"
+  long: "Set up and manage external memory provider plugins (honcho, openviking, mem0, etc). Only one external provider can be active at a time."
+  syntax: "hermes memory <subcommand>"
+
+moa:
+  short: "Configure named Mixture of Agents presets"
+  long: "Configure named Mixture of Agents presets. Presets appear as selectable models in every model picker."
+  syntax: "hermes moa <subcommand>"
+
+model:
+  short: "Interactive provider and model selector"
+  long: "Interactive provider and model selector. This is the command for adding new providers, setting up API keys, and running OAuth flows."
+  syntax: "hermes model [model]"
+
+profile:
+  short: "Manage profiles — multiple isolated Hermes instances"
+  long: "Manage profiles — multiple isolated Hermes instances, each with its own config, sessions, skills, and home directory."
+  syntax: "hermes profile <subcommand>"
