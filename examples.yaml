@@ -185,6 +185,10 @@ memory:
 moa:
   - desc: "List configured MoA presets:"
     cmd: "hermes moa list"
+  - desc: "Create or update a named MoA preset interactively:"
+    cmd: "hermes moa configure {{name}}"
+  - desc: "Delete a MoA preset:"
+    cmd: "hermes moa delete {{name}}"
 
 model:
   - desc: "Interactive provider and model selector:"
