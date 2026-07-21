@@ -125,6 +125,10 @@ chat:
     cmd: "hermes chat -m {{model}}"
   - desc: "Force a provider for the duration of this session:"
     cmd: "hermes chat --provider {{provider}}"
+  - desc: "Attach an image to a one-shot query:"
+    cmd: "hermes chat --image {{path/to/image}}"
+  - desc: "One-shot with model override and an image:"
+    cmd: "hermes chat -m {{model}} --image {{path/to/image}} -q \"your prompt\""
 
 config:
   - desc: "Show current config values:"
