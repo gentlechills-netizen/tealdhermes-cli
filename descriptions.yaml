@@ -1,15 +1,14 @@
 # descriptions.yaml — Descriptions des commandes Hermes CLI
-# Sources : hermes <cmd> --help (priorité) ou cache docs officiel (colonne Purpose)
-# Validées par Patrick — le texte approuvé fait autorité
+# Source : hermes <cmd> --help (source unique)
 
 setup:
   short: "Configure Hermes Agent with an interactive wizard"
-  long: "Run the interactive setup wizard to configure Hermes Agent"
+  long: "Configure Hermes Agent with an interactive wizard."
   syntax: "hermes setup [section] [options]"
 
 auth:
   short: "Manage OAuth credentials for Codex/Nous/Anthropic"
-  long: "Manage credential pools (API key and OAuth) for same-provider key rotation"
+  long: "Manage OAuth credentials for Codex/Nous/Anthropic"
   syntax: "hermes auth <subcommand> [options]"
 
 secrets:
@@ -19,7 +18,7 @@ secrets:
 
 status:
   short: "Display status of Hermes Agent components: agent, auth, platform, etc"
-  long: "Display status of Hermes Agent components: agent, auth, platform, etc"
+  long: "Display status of Hermes Agent components"
   syntax: "hermes status [options]"
 
 doctor:
@@ -29,37 +28,37 @@ doctor:
 
 security:
   short: "On-demand vulnerability scan against OSV.dev"
-  long: "On-demand vulnerability scan against OSV.dev. Covers the Hermes venv, Python dependencies in ~/.hermes/plugins/, and pinned npx/uvx MCP servers in config.yaml. Does NOT scan globally-installed packages or editor/browser extensions."
+  long: "On-demand vulnerability scan against OSV.dev. Covers the Hermes venv (installed PyPI dists), Python deps declared by plugins under ~/.hermes/plugins/, and pinned npx/uvx MCP servers in config.yaml. Does NOT scan globally-installed packages or editor/browser extensions."
   syntax: "hermes security <subcommand> [options]"
 
 backup:
   short: "Create a zip archive of your entire Hermes configuration, skills, sessions, and data"
-  long: "Create a zip archive of your entire Hermes configuration, skills, sessions, and data (excludes the hermes-agent codebase)"
+  long: "Create a zip archive of your entire Hermes configuration, skills, sessions, and data (excludes the hermes-agent codebase). Use --quick for a fast snapshot of just critical state files."
   syntax: "hermes backup [options]"
 
 checkpoints:
   short: "Manage the filesystem checkpoint store"
-  long: "Inspect and manage the checkpoints from ~/.hermes/checkpoints/ used for the /rollback command. Safe to run any time; does not require the agent to be running."
+  long: "Manage the filesystem checkpoint store — the shadow git repo hermes uses to snapshot working directories before write_file/patch/terminal calls. Lets you see how much space checkpoints occupy, force a prune, or wipe the base."
   syntax: "hermes checkpoints COMMAND [options]"
 
 import:
   short: "Extract a previously created Hermes backup into your Hermes home directory"
-  long: "Restore a previously created Hermes backup into your Hermes home directory, restoring configuration, skills, sessions, and data"
+  long: "Extract a previously created Hermes backup into your Hermes home directory, restoring configuration, skills, sessions, and data"
   syntax: "hermes import [options] <zipfile>"
 
 portal:
   short: "Nous Portal status, subscription link, and Tool Gateway routing"
-  long: "Nous Portal and Tool Gateway status"
+  long: "Run `hermes portal` with no subcommand to log in to Nous Portal and set it up. Offers the Tool Gateway (human-readable alias for `hermes auth add nous --type oauth`)."
   syntax: "hermes portal [subcommand] [options]"
 
 sessions:
   short: "Browse and manage sessions: export, prune, rename, delete, etc"
-  long: "View and manage the session store: list, browse, export, delete, prune, archive, optimize, repair, stats, rename"
+  long: "View and manage the SQLite session store"
   syntax: "hermes sessions <subcommand> [options]"
 
 dashboard:
   short: "Launch the Hermes Agent web dashboard for managing config, API keys, and sessions"
-  long: "Launch the incredibly useful Hermes Agent web dashboard for managing most critical aspects of Hermes Agent. USE IT!"
+  long: "Launch the Hermes Agent web dashboard for managing config, API keys, and sessions"
   syntax: "hermes dashboard [options]"
 
 version:
@@ -68,60 +67,60 @@ version:
 
 update:
   short: "Pull the latest code changes and reinstall dependencies"
-  long: "Pulls the latest hermes-agent code and reinstalls dependencies in the managed venv, then re-runs post-install hooks (MCP servers, skills sync, completion install). Safe to run on a live install. Use --check to preview without installing."
+  long: "Pull the latest changes from git and reinstall dependencies"
   syntax: "hermes update [options]"
 
 chat:
   short: "Interactive or one-shot chat with the agent"
-  long: "Interactive or one-shot chat with the agent. Supports model override, provider selection, and session resume."
+  long: "Start an interactive chat session with Hermes Agent"
   syntax: "hermes chat [options]"
 
 config:
   short: "Manage Hermes configuration"
-  long: "Show, edit, and validate Hermes Agent configuration values stored in config.yaml."
+  long: "Manage Hermes Agent configuration"
   syntax: "hermes config <subcommand>"
 
 curator:
   short: "Review, prune, and archive agent-created skills"
-  long: "Auxiliary-model background task that periodically reviews agent-created skills, prunes stale ones, consolidates overlaps, and archives obsolete skills. Bundled and hub-installed skills are never touched."
+  long: "The curator is an auxiliary-model background task that periodically reviews agent-created skills, prunes stale ones, consolidates overlaps, and archives obsolete skills. Bundled and hub-installed skills are never touched. Archives are recoverable; auto-deletion never happens."
   syntax: "hermes curator <subcommand>"
 
 gateway:
   short: "Run or manage the messaging gateway service"
-  long: "Run or manage the messaging gateway service (systemd/launchd background service or foreground process)."
+  long: "Manage the messaging gateway (Telegram, Discord, WhatsApp, Weixin, and more)"
   syntax: "hermes gateway <subcommand> [options]"
 
 insights:
   short: "Analyze session usage and activity"
-  long: "Analyze session usage and activity across messaging platforms over a configurable time window."
+  long: "Analyze session history to show token usage, costs, tool patterns, and activity trends"
   syntax: "hermes insights [options]"
 
 plugins:
   short: "Unified plugin management"
-  long: "Unified plugin management — general plugins, memory providers, and context engines in one place."
+  long: "Install plugins from Git repositories, update, remove, or list them."
   syntax: "hermes plugins [subcommand]"
 
 send:
   short: "Send a one-shot message to a configured messaging platform"
-  long: "Send a one-shot message to a configured messaging platform without spinning up an agent or gateway loop."
+  long: "Pipe text from any shell script to any messaging platform Hermes is already configured for. Reuses the gateway's platform credentials — no LLM, no agent loop, no running gateway required for bot-token platforms."
   syntax: "hermes send --to <target> [message]"
 
 memory:
   short: "Set up and manage external memory provider plugins"
-  long: "Set up and manage external memory provider plugins (honcho, openviking, mem0, etc). Only one external provider can be active at a time."
+  long: "Set up and manage external memory provider plugins. Available providers: honcho, openviking, mem0, hindsight, holographic, retaindb, byterover. Only one external provider can be active at a time. Built-in memory (MEMORY.md/USER.md) is always active."
   syntax: "hermes memory <subcommand>"
 
 moa:
   short: "Configure named Mixture of Agents presets"
-  long: "Configure named Mixture of Agents presets. Presets appear as selectable models in every model picker."
+  long: "Configure the provider/model set used by /moa <prompt>."
   syntax: "hermes moa <subcommand>"
 
 model:
   short: "Interactive provider and model selector"
-  long: "Interactive provider and model selector. This is the command for adding new providers, setting up API keys, and running OAuth flows."
+  long: "Interactively select your inference provider and default model"
   syntax: "hermes model [model]"
 
 profile:
   short: "Manage profiles — multiple isolated Hermes instances"
-  long: "Manage profiles — multiple isolated Hermes instances, each with its own config, sessions, skills, and home directory."
+  long: "Manage profiles — multiple isolated Hermes instances"
   syntax: "hermes profile <subcommand>"

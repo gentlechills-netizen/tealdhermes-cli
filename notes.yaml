@@ -1,1 +1,19 @@
-# notes.yaml — réservé pour usage futur
+# notes.yaml — Enrichissements manuels au-delà de --help
+# Chaque entrée indique pourquoi la description longue diffère de hermes <cmd> --help
+# Validées par Patrick — le texte approuvé fait autorité
+
+auth: "Long description enrichie : gestion des pools de credentials (key rotation)"
+chat: "Long description enrichie : mode one-shot, model override, provider selection, session resume"
+checkpoints: "Long description enrichie : lien avec /rollback et sécurité d'exécution"
+config: "Long description enrichie : show/edit/validate et fichier config.yaml"
+dashboard: "Long description enrichie : texte original de Patrick (incredibly useful)"
+gateway: "Long description enrichie : mention systemd/launchd, foreground et background"
+insights: "Long description enrichie : analyse par plateforme sur fenêtre configurable"
+moa: "Long description enrichie : presets visibles dans tous les model pickers"
+model: "Long description enrichie : ajout de providers, clés API, flows OAuth"
+plugins: "Long description enrichie : plugins, providers mémoire, context engines"
+portal: "Long description enrichie : status Portal et Tool Gateway"
+profile: "Long description enrichie : instances isolées avec config, sessions, skills"
+sessions: "Long description enrichie : liste des sous-commandes (export, prune, etc.)"
+status: "Long description enrichie : composants agent, auth, platform"
+update: "Long description enrichie : post-install hooks, --check, compatibilité live"
